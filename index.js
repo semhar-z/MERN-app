@@ -16,7 +16,7 @@ app.use("/api/items", itemRoutes);
 
 // Connect to MongoDB
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Connected to MongoDB");
