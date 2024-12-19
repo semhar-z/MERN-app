@@ -11,7 +11,6 @@ router.post("/", async (req, res) => {
   try {
     const item = new Item(req.body);
     const savedItem = await item.save();
-    // await item.save();
     res.status(201).json(savedItem);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -38,7 +37,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.get("/:postId", async (req, res) => {
+router.get("/postId/:postId", async (req, res) => {
   try {
     const { postId } = req.params;
       if (isNaN(postId)) {
@@ -68,7 +67,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // update by postId
-router.put("/:postId", async (req, res) => {
+router.put("/postId/:postId", async (req, res) => {
   try {
     const { postId } = req.params;
     const updatedItem = await Item.findOneAndUpdate(
