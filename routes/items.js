@@ -38,14 +38,14 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.get('/:postId', async (req, res) => {
+router.get("/:postId", async (req, res) => {
   try {
     const { postId } = req.params;
       if (isNaN(postId)) {
       return res.status(400).json({ error: "Invalid number parameter" });
     }
     
-    const item = await Item.findOne({ number: parseInt(postId) });
+    const item = await Item.findOne({ postId: parseInt(postId) });
     if (!item) {
       return res.status(404).json({ error: "Item not found" });
     }
