@@ -67,6 +67,27 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// update by postId
+router.put("/:postId", async (req, res) => {
+  try {
+    const { postId } = req.params;
+    const updatedItem = await Item.findOneAndUpdate(
+      { postId: parseInt(postId) },
+      req.body, 
+      { new: true } 
+    );
+
+    if (!updatedItem) {
+      return res.status(404).json({ error: "Item not found" });
+    }
+
+    res.json(updatedItem);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+
 // Delete
 router.delete("/:id", async (req, res) => {
   try {
